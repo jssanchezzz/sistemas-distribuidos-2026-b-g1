@@ -1,9 +1,5 @@
 # OptiView — C4 Architecture Model
 
-This document describes the OptiView architecture using the [C4 model](https://c4model.com/) (Context, Containers, Components, Code/Deployment). Diagrams are expressed in Mermaid so they render directly in any Markdown viewer that supports it (GitHub, GitLab, VS Code, etc.).
-
-Related document: `OptiView-PRD-EN.md` (functional and architectural requirements).
-
 ---
 
 ## Level 1 — System Context Diagram
