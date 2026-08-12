@@ -5,10 +5,10 @@
 # Weekly Status - Week 01
 
 <!-- CONFIG-START - must match your profile repo (username/username) CONFIG -->
-- FULL_NAME:
-- GITHUB_USER:
-- TEAM:
-- SPRINT_GOAL:
+- FULL_NAME: Juan Sebastian Sanchez Silva
+- GITHUB_USER: jssanchezzz
+- TEAM: The illusionists
+- SPRINT_GOAL: Generation of firts documentacion(PDR && C4) based in the intructions by the teacher
 <!-- CONFIG-END -->
 
 ## 1. User stories worked this week
@@ -17,7 +17,8 @@
 | HU-XXX-001 |  |  |  |
 
 ## 2. My individual contribution
--
+- 01-week/hu-status/OptiView-C4-Model-EN.md
+- 01-week/hu-status/OptiView-PDR-EN.md
 
 ## 3. Blockers and risks
 -
