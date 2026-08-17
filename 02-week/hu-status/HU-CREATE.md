@@ -8,7 +8,7 @@
 - FULL_NAME: Juan Sebastian Sanchez Silva
 - GITHUB_USER: jssanchezzz
 - TEAM: The illusionists
-- SPRINT_GOAL: Generation of firts HU in GitHub Proyects (HU10-HU08)
+- SPRINT_GOAL: Generation of firts HU in GitHub Proyects (HU10-HU08) && Creation of the test repo for the correct use of the git-github platform and use of the branches/commits/cherrypicks
 <!-- CONFIG-END -->
 
 ## 1. User stories worked this week
@@ -23,7 +23,7 @@
 * Organized the user stories by **microservice, priority, milestone, and story points**.
 * Documented the technical requirements for the inventory low-stock alert, work order creation, and automatic invoice generation workflows.
 * Added the necessary details to help the development team understand and implement the backend functionality.
-
+* Created and configured a test repository (Test1) to validate the deployment workflow.
 
 ## 3. Blockers and risks
 -
