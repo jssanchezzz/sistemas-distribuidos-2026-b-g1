@@ -18,13 +18,18 @@
 | HU-OBS-002 | Structured JSON log contract for the five services of the journey (CP2) | done |  |
 | HU-OBS-003 | traceparent filter, JSON logger and metrics in opti-workflow with a propagation test (CP3) | done |  |
 | HU-OBS-004 | Golden-signal metric catalog with PromQL and cardinality rules (CP4) | done |  |
-| HU-OBS-005 | SLOs, burn-rate alerts, runbook and incident drill (CP6-CP9) | todo |  |
+| HU-OBS-005 | SLOs and error budget for place-order (CP6) | done |  |
+| HU-OBS-006 | Burn-rate alerting rules validated with promtool (CP7) | done |  |
+| HU-OBS-007 | Runbook for the place-order fast-burn alert (CP8) | done |  |
+| HU-OBS-008 | Incident drill and blameless postmortem INC-001 (CP9) | done |  |
 
 ## 2. My individual contribution
 - Mapped the place-order saga (opti-api-gateway -> opti-workflow -> customers/products/sales APIs) with its async boundary (saga state in Redis + resume task).
 - Wrote the log contract: 11 mandatory fields, saga/patient/reservation domain fields, never-log list for patient data and tokens.
 - Built `workflow-tracing` (Java 21): W3C traceparent in and out, JSON logs with trace_id/span_id, `workflow_sagas_total` and `workflow_http_request_duration_seconds`, 2 passing tests.
 - Wrote the metric catalog for the five services, with bounded labels and latency buckets tied to `HTTP_TIMEOUT=5s`.
+- Defined 3 SLOs for place-order (availability 99.5 %, latency 99 % < 1 s, saga consistency 99.9 %) with budgets in requests and minutes.
+- Wrote multi-window burn-rate rules (14.4 / 1 h and 6 / 6 h), the runbook and the INC-001 drill with 3 action items.
 
 ## 3. Blockers and risks
 - `management.endpoints.enabled-by-default: false` in the APIs: Prometheus metrics need an actuator change agreed with the team.
@@ -32,8 +37,8 @@
 - The nginx gateway does not create spans; it only forwards `traceparent`.
 
 ## 4. Plan for next week
-- CP6-CP10: SLOs and error budget for place-order, burn-rate alerts, runbook, incident drill and postmortem.
 - Propose a PR to opti-workflow to add `traceparent` in `CorrelationFilter` and `ParticipantClient`.
+- Bring the postmortem action items (stock_movement index, faster latency alert, k6 load test) to sprint planning.
 
 ## 5. Compliance self-check
 - [x] Conventional Commits - `type(scope): summary`
@@ -49,3 +54,8 @@
 - 11-week/workshop/02-log-contract.md
 - 11-week/workshop/03-instrumentation/
 - 11-week/workshop/04-metrics.md
+- 11-week/workshop/05-slo.md
+- 11-week/workshop/06-alerts.yml
+- 11-week/workshop/06-alert-policy.md
+- 11-week/workshop/07-runbook.md
+- 11-week/workshop/08-incident.md

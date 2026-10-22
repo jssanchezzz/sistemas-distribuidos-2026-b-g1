@@ -25,3 +25,7 @@ debt AT-002 in `05-architecture/overview.md`; this workshop is a first answer to
 | [02-log-contract.md](02-log-contract.md) | CP2 - structured log contract |
 | [03-instrumentation/](03-instrumentation/) | CP3 - trace context, logger, metrics and test (Java 21) |
 | [04-metrics.md](04-metrics.md) | CP4 - golden signals and metric catalog |
+| [05-slo.md](05-slo.md) | CP6 - SLIs, SLOs and error budget |
+| [06-alerts.yml](06-alerts.yml) / [06-alert-policy.md](06-alert-policy.md) | CP7 - burn-rate alerts |
+| [07-runbook.md](07-runbook.md) | CP8 - runbook for the fast-burn alert |
+| [08-incident.md](08-incident.md) | CP9 - incident drill and postmortem |
