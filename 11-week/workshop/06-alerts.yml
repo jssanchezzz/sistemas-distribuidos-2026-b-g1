@@ -1,0 +1,67 @@
+# Burn-rate alerts for the place-order journey of opti-workflow (see 05-slo.md and 06-alert-policy.md).
+# Availability SLO 99.5 % -> error budget 0.005. Latency SLO 99 % under 1 s -> error budget 0.01.
+groups:
+  - name: opti-workflow-place-order-sli
+    rules:
+      - record: workflow:place_order_errors:ratio_rate5m
+        expr: sum(rate(workflow_sagas_total{saga_type="place-order",outcome="failed"}[5m])) / sum(rate(workflow_sagas_total{saga_type="place-order"}[5m]))
+      - record: workflow:place_order_errors:ratio_rate30m
+        expr: sum(rate(workflow_sagas_total{saga_type="place-order",outcome="failed"}[30m])) / sum(rate(workflow_sagas_total{saga_type="place-order"}[30m]))
+      - record: workflow:place_order_errors:ratio_rate1h
+        expr: sum(rate(workflow_sagas_total{saga_type="place-order",outcome="failed"}[1h])) / sum(rate(workflow_sagas_total{saga_type="place-order"}[1h]))
+      - record: workflow:place_order_errors:ratio_rate6h
+        expr: sum(rate(workflow_sagas_total{saga_type="place-order",outcome="failed"}[6h])) / sum(rate(workflow_sagas_total{saga_type="place-order"}[6h]))
+      - record: workflow:place_order_slow:ratio_rate5m
+        expr: 1 - (sum(rate(workflow_http_request_duration_seconds_bucket{route="/api/v1/sagas/place-order",le="1"}[5m])) / sum(rate(workflow_http_request_duration_seconds_count{route="/api/v1/sagas/place-order"}[5m])))
+      - record: workflow:place_order_slow:ratio_rate1h
+        expr: 1 - (sum(rate(workflow_http_request_duration_seconds_bucket{route="/api/v1/sagas/place-order",le="1"}[1h])) / sum(rate(workflow_http_request_duration_seconds_count{route="/api/v1/sagas/place-order"}[1h])))
+
+  - name: opti-workflow-place-order-burn-rate
+    rules:
+      - alert: PlaceOrderAvailabilityFastBurn
+        expr: |
+          workflow:place_order_errors:ratio_rate1h > (14.4 * 0.005)
+          and
+          workflow:place_order_errors:ratio_rate5m > (14.4 * 0.005)
+        for: 2m
+        labels:
+          severity: page
+          team: opti
+          service: opti-workflow
+          slo: place-order-availability
+        annotations:
+          summary: "place-order is spending its availability budget 14.4x too fast (2 % of the 30-day budget in 1 h)"
+          description: "{{ $value | humanizePercentage }} of place-order sagas failed for a technical reason in the last hour."
+          runbook_url: "https://github.com/GITHUB_USER/sistemas-distribuidos-2026-b-g1/blob/main/11-week/workshop/07-runbook.md"
+
+      - alert: PlaceOrderAvailabilitySlowBurn
+        expr: |
+          workflow:place_order_errors:ratio_rate6h > (6 * 0.005)
+          and
+          workflow:place_order_errors:ratio_rate30m > (6 * 0.005)
+        for: 15m
+        labels:
+          severity: ticket
+          team: opti
+          service: opti-workflow
+          slo: place-order-availability
+        annotations:
+          summary: "place-order is spending its availability budget 6x too fast (5 % of the 30-day budget in 6 h)"
+          description: "{{ $value | humanizePercentage }} of place-order sagas failed in the last 6 hours."
+          runbook_url: "https://github.com/GITHUB_USER/sistemas-distribuidos-2026-b-g1/blob/main/11-week/workshop/07-runbook.md"
+
+      - alert: PlaceOrderLatencyFastBurn
+        expr: |
+          workflow:place_order_slow:ratio_rate1h > (14.4 * 0.01)
+          and
+          workflow:place_order_slow:ratio_rate5m > (14.4 * 0.01)
+        for: 2m
+        labels:
+          severity: page
+          team: opti
+          service: opti-workflow
+          slo: place-order-latency
+        annotations:
+          summary: "place-order is too slow: more than 14.4 % of requests over 1 s in the last hour"
+          description: "{{ $value | humanizePercentage }} of place-order requests took more than 1 s."
+          runbook_url: "https://github.com/GITHUB_USER/sistemas-distribuidos-2026-b-g1/blob/main/11-week/workshop/07-runbook.md"
