@@ -11,7 +11,7 @@
 - REFLECTION_DOC:
 - LIBRARY_BOOK: Tanenbaum, A. S. and van Steen, M. Sistemas distribuidos: principios y paradigmas. 2nd ed. Pearson Educacion, 2008. Call number 0003771 (CORHUILA Prado Alto library). Chapter 9, pp. 378-381, 396-397, 413-414, 428
 - LIBRARY_RECORD_TIME: 2026-10-28 19:10
-- STORIES: https://github.com/code-corhuila/opti-docs/issues/61, https://github.com/code-corhuila/opti-docs/issues/62, https://github.com/code-corhuila/opti-docs/issues/63
+- STORIES: https://github.com/code-corhuila/opti-docs/issues/63 (D, risk 6, P2), https://github.com/code-corhuila/opti-docs/issues/62 (I, risk 6, P1), https://github.com/code-corhuila/opti-docs/issues/61 (E, risk 3, P0)
 <!-- CONFIG-END -->
 
 ## Why this boundary
