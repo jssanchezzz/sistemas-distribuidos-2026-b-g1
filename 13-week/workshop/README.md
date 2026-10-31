@@ -6,12 +6,12 @@
 - TEAM: opti (The Illusionists) - OptiView
 - DOCS_REPO: https://github.com/code-corhuila/opti-docs
 - BOUNDARY: TB4 - opti-sales-api to the external payment API (Wompi)
-- CLAIM_ISSUE: https://github.com/code-corhuila/opti-docs/issues/58
-- STRIDE_PR:
+- CLAIM_ISSUE: https://github.com/code-corhuila/opti-docs/issues/59
+- STRIDE_PR: https://github.com/code-corhuila/opti-docs/pull/60
 - REFLECTION_DOC:
 - LIBRARY_BOOK: Tanenbaum, A. S. and van Steen, M. Sistemas distribuidos: principios y paradigmas. 2nd ed. Pearson Educacion, 2008. Call number 0003771 (CORHUILA Prado Alto library). Chapter 9, pp. 378-381, 396-397, 413-414, 428
 - LIBRARY_RECORD_TIME: 2026-10-28 19:10
-- STORIES:
+- STORIES: https://github.com/code-corhuila/opti-docs/issues/61, https://github.com/code-corhuila/opti-docs/issues/62, https://github.com/code-corhuila/opti-docs/issues/63
 <!-- CONFIG-END -->
 
 ## Why this boundary
